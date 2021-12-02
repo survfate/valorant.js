@@ -3,6 +3,7 @@ import { RequestBuilder } from "../Request";
 import { ItemParser } from "../helpers/ItemParser";
 import axios from "axios";
 import { IItemUpgrades } from "../models/IItemUpgrades";
+import { Endpoints } from "../resources/Endpoints";
 
 export class ContentApi {
     private _client: RiotApiClient
@@ -49,7 +50,7 @@ export class ContentApi {
     async getContent(): Promise<any> {
         const contentReq = new RequestBuilder()
             .setMethod("GET")
-            .setUrl(this._client.region.SharedUrl + "/content-service/v2/content")
+            .setUrl(Endpoints.ContentBase + "?locale=" + Endpoints.ContentUS)
             .build();
 
         const contentRes = (await this._client.http.sendRequest(contentReq)).data;

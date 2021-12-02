@@ -11,32 +11,27 @@ export class ItemParser {
     };
 
     parse() {
-        if(JSON.stringify(this.data).includes("Characters")){
-            const characters = this.data.Characters;
-            const maps = this.data.Maps;
-            const chromas = this.data.Chromas;
-            const skins = this.data.Skins;
-            const skinLevels = this.data.SkinLevels;
-            const attachments = this.data.Attachments;
-            const equips = this.data.Equips;
-            const themes = this.data.Themes;
-            const gameModes = this.data.GameModes;
-            const sprays = this.data.Sprays;
-            const sprayLevels = this.data.SprayLevels;
-            const charms = this.data.Charms;
-            const charmLevels = this.data.CharmLevels;
-            const playerCards = this.data.PlayerCards;
-            const playerTitles = this.data.PlayerTitles;
-            const storefrontItems = this.data.StorefrontItems;
+        if(JSON.stringify(this.data).includes("characters")){
+            const characters = this.data.characters;
+            const maps = this.data.maps;
+            const chromas = this.data.chromas;
+            const skins = this.data.skins;
+            const skinLevels = this.data.skinLevels;
+            const equips = this.data.equips;
+            const gameModes = this.data.gameModes;
+            const sprays = this.data.sprays;
+            const sprayLevels = this.data.sprayLevels;
+            const charms = this.data.charms;
+            const charmLevels = this.data.charmLevels;
+            const playerCards = this.data.playerCards;
+            const playerTitles = this.data.playerTitles;
 
             const Characters = [];
             const Maps = [];
             const Chromas = [];
             const Skins = [];
             const SkinLevels = [];
-            const Attachments = [];
             const Equips = [];
-            const Themes = [];
             const GameModes = [];
             const Sprays = [];
             const SprayLevels = [];
@@ -44,71 +39,58 @@ export class ItemParser {
             const CharmLevels = [];
             const PlayerCards = [];
             const PlayerTitles = [];
-            const StorefrontItems = [];
 
             characters.forEach(element => {
                 if(element)
-                    Characters.push({ name: element.Name, id: element.ID.toLowerCase() });
+                    Characters.push({ name: element.name, id: element.id.toLowerCase() });
             });
             maps.forEach(element => {
                 if(element)
-                    Maps.push({ name: element.Name, id: element.ID.toLowerCase() });
+                    Maps.push({ name: element.name, id: element.id.toLowerCase() });
             });
             chromas.forEach(element => {
                 if(element)
-                    Chromas.push({ name: element.Name, id: element.ID.toLowerCase() });
+                    Chromas.push({ name: element.name, id: element.id.toLowerCase() });
             });
             skins.forEach(element => {
                 if(element)
-                    Skins.push({ name: element.Name, id: element.ID.toLowerCase() });
+                    Skins.push({ name: element.name, id: element.id.toLowerCase() });
             });
             skinLevels.forEach(element => {
                 if(element)
-                    SkinLevels.push({ name: element.Name, id: element.ID.toLowerCase() });
-            });
-            attachments.forEach(element => {
-                if(element)
-                    Attachments.push({ name: element.Name, id: element.ID.toLowerCase() });
+                    SkinLevels.push({ name: element.name, id: element.id.toLowerCase() });
             });
             equips.forEach(element => {
                 if(element)
-                    Equips.push({ name: element.Name, id: element.ID.toLowerCase() });
-            });
-            themes.forEach(element => {
-                if(element)
-                    Themes.push({ name: element.Name, id: element.ID.toLowerCase() });
+                    Equips.push({ name: element.name, id: element.id.toLowerCase() });
             });
             gameModes.forEach(element => {
                 if(element)
-                    GameModes.push({ name: element.Name, id: element.ID.toLowerCase() });
+                    GameModes.push({ name: element.name, id: element.id.toLowerCase() });
             });
             sprays.forEach(element => {
                 if(element)
-                    Sprays.push({ name: element.Name, id: element.ID.toLowerCase() });
+                    Sprays.push({ name: element.name, id: element.id.toLowerCase() });
             });
             sprayLevels.forEach(element => {
                 if(element)
-                    SprayLevels.push({ name: element.Name, id: element.ID.toLowerCase() });
+                    SprayLevels.push({ name: element.name, id: element.id.toLowerCase() });
             });
             charms.forEach(element => {
                 if(element)
-                    Charms.push({ name: element.Name, id: element.ID.toLowerCase() });
+                    Charms.push({ name: element.name, id: element.id.toLowerCase() });
             });
             charmLevels.forEach(element => {
                 if(element)
-                    CharmLevels.push({ name: element.Name, id: element.ID.toLowerCase() });
+                    CharmLevels.push({ name: element.name, id: element.id.toLowerCase() });
             });
             playerCards.forEach(element => {
                 if(element)
-                    PlayerCards.push({ name: element.Name, id: element.ID.toLowerCase() });
+                    PlayerCards.push({ name: element.name, id: element.id.toLowerCase() });
             });
             playerTitles.forEach(element => {
                 if(element)
-                    PlayerTitles.push({ name: element.Name, id: element.ID.toLowerCase() });
-            });
-            storefrontItems.forEach(element => {
-                if(element)
-                    StorefrontItems.push({ name: element.Name, id: element.ID.toLowerCase() });
+                    PlayerTitles.push({ name: element.name, id: element.id.toLowerCase() });
             });
 
             const AllItems = {
@@ -117,9 +99,7 @@ export class ItemParser {
                 chromas: Chromas,
                 skins: Skins,
                 skinLevels: SkinLevels,
-                attachments: Attachments,
                 equips: Equips,
-                themes: Themes,
                 gamemodes: GameModes,
                 sprays: Sprays,
                 sprayLevels: SprayLevels,
@@ -127,7 +107,6 @@ export class ItemParser {
                 charmLevels: CharmLevels,
                 playerCards: PlayerCards,
                 playerTitles: PlayerTitles,
-                storefrontItems: StorefrontItems
             }
 
             return AllItems;
