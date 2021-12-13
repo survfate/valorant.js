@@ -12,7 +12,7 @@ import { Request, RequestBuilder } from "./Request";
 import { Endpoints } from "./resources/Endpoints";
 import { ApiClientException } from "./models/Exceptions";
 import { CookieJar } from "tough-cookie";
-import axiosCookieJarSupport from "axios-cookiejar-support";
+import { wrapper as axiosCookieJarSupport } from 'axios-cookiejar-support';
 
 export class RiotApiClient {
     #config: IConfig
@@ -110,7 +110,7 @@ export class Http extends AbstractHttp {
         this.auth = authorization;
         this.version = version;
     }
-
+    axios_cookiejar_support_1
     /**
      * - Sends a request
      * @param request Request to send
