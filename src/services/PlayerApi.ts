@@ -49,8 +49,8 @@ export class PlayerApi {
         const cookieReq = new RequestBuilder()
             .setMethod("POST")
             .setUrl(Endpoints.Auth + "/api/v1/authorization")
-            .addHeader("content-type", "application/json")
-            .addHeader("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36")
+            .addHeader("Content-Type", "application/json")
+            .addHeader("User-Agent", "RiotClient/43.0.1.4195386.4190634 rso-auth (Windows;10;;Professional, x64)")
             .setBody({
                 "client_id": "play-valorant-web-prod",
                 "nonce": "1",
@@ -63,8 +63,8 @@ export class PlayerApi {
         const loginReq = new RequestBuilder()
             .setMethod("PUT")
             .setUrl(Endpoints.Auth + "/api/v1/authorization")
-            .addHeader("content-type", "application/json")
-            .addHeader("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36")
+            .addHeader("Content-Type", "application/json")
+            .addHeader("User-Agent", "RiotClient/43.0.1.4195386.4190634 rso-auth (Windows;10;;Professional, x64)")
             .setBody({
                 "type": "auth",
                 "username": username,

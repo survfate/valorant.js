@@ -129,6 +129,7 @@ export class Http extends AbstractHttp {
                 modifiedReq.addHeader("X-Riot-ClientVersion", this.version);
 
             modifiedReq.addHeader("X-Riot-ClientPlatform", RiotApiClient.XRiotClientPlatform);
+            modifiedReq.addHeader("User-Agent", "RiotClient/43.0.1.4195386.4190634 rso-auth (Windows;10;;Professional, x64)");
             modifiedReq.setCookieJar(this.jar);
 
             return await Axios(modifiedReq.build());

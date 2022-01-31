@@ -11,7 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "@types/tough-cookie": "^4.0.0",
-    "axios": "^0.24.0",
+    "axios": "^0.25.0",
     "axios-cookiejar-support": "^2.0.3",
     "querystring": "^0.2.1",
     "tough-cookie": "^4.0.0",
