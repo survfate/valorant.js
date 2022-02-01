@@ -50,7 +50,7 @@ export class ContentApi {
     async getContent(): Promise<any> {
         const contentReq = new RequestBuilder()
             .setMethod("GET")
-            .setUrl(Endpoints.ContentBase + "?locale=" + Endpoints.ContentUS)
+            .setUrl(this._client.locale.ContentBaseUrl + "?locale=" + this._client.locale.ContentLocale)
             .build();
 
         const contentRes = (await this._client.http.sendRequest(contentReq)).data;

@@ -19,6 +19,7 @@ export class RiotApiClient {
     auth: IAuthorization
     clientVersion: string
     region: Region
+    locale: Locale
     http: Http
     contentApi: ContentApi
     matchApi: MatchApi
@@ -38,10 +39,13 @@ export class RiotApiClient {
      */
     constructor(config: IConfig) {
         if (!(config.region instanceof Region))
-            throw new Error("'Config.region' must be type of 'Region'.")
+            throw new Error("'Config.region' must be type of 'Region'.");
+        if (!(config.locale instanceof Locale))
+            throw new Error("'Config.locale' must be type of 'Locale'.");
         this.http = new Http();
         this.#config = config;
         this.region = config.region;
+        this.locale = config.locale;
         this.buildServices();
     }
 
@@ -129,7 +133,6 @@ export class Http extends AbstractHttp {
                 modifiedReq.addHeader("X-Riot-ClientVersion", this.version);
 
             modifiedReq.addHeader("X-Riot-ClientPlatform", RiotApiClient.XRiotClientPlatform);
-            modifiedReq.addHeader("User-Agent", "RiotClient/43.0.1.4195386.4190634 rso-auth (Windows;10;;Professional, x64)");
             modifiedReq.setCookieJar(this.jar);
 
             return await Axios(modifiedReq.build());
@@ -157,5 +160,35 @@ export class Region {
     static EU = new Region(Endpoints.EuBase, Endpoints.EuShared, Endpoints.EuParty, "eu");
     static NA = new Region(Endpoints.NaBase, Endpoints.NaShared, Endpoints.NaParty, "na");
     static AP = new Region(Endpoints.ApBase, Endpoints.ApShared, Endpoints.ApParty, "ap");
-    static KR = new Region(Endpoints.KrBase, Endpoints.KrShared, Endpoints.KrParty, "kr")
+    static KR = new Region(Endpoints.KrBase, Endpoints.KrShared, Endpoints.KrParty, "kr");
+}
+
+export class Locale {
+    ContentBaseUrl: string
+    ContentLocale: string
+
+    constructor(contentBaseUrl: string, contentLocale: string) {
+        this.ContentBaseUrl = contentBaseUrl;
+        this.ContentLocale = contentLocale;
+    }
+
+    static AE = new Locale(Endpoints.ContentBase, "ar-AE");
+    static DE = new Locale(Endpoints.ContentBase, "de-DE");
+    static GB = new Locale(Endpoints.ContentBase, "en-GB");
+    static US = new Locale(Endpoints.ContentBase, "en-US");
+    static ES = new Locale(Endpoints.ContentBase, "es-ES");
+    static MX = new Locale(Endpoints.ContentBase, "es-MX");
+    static FR = new Locale(Endpoints.ContentBase, "fr-FR");
+    static ID = new Locale(Endpoints.ContentBase, "id-ID");
+    static IT = new Locale(Endpoints.ContentBase, "it-IT");
+    static JP = new Locale(Endpoints.ContentBase, "ja-JP");
+    static KR = new Locale(Endpoints.ContentBase, "ko-KR");
+    static PL = new Locale(Endpoints.ContentBase, "pl-PL");
+    static BR = new Locale(Endpoints.ContentBase, "pt-BR");
+    static RU = new Locale(Endpoints.ContentBase, "ru-RU");
+    static TH = new Locale(Endpoints.ContentBase, "th-TH");
+    static TR = new Locale(Endpoints.ContentBase, "tr-TR");
+    static VN = new Locale(Endpoints.ContentBase, "vi-VN");
+    static CN = new Locale(Endpoints.ContentBase, "zh-CN");
+    static TW = new Locale(Endpoints.ContentBase, "zh-TW");
 }

@@ -17,24 +17,5 @@ export enum Endpoints {
     ApParty = "https://glz-ap-1.ap.a.pvp.net",
     KrParty = "https://glz-kr-1.kr.a.pvp.net",
 
-    ContentBase = "https://api.henrikdev.xyz/valorant/v1/content",
-    ContentAE = "ar-AE",
-    ContentDE = "de-DE",
-    ContentGB = "en-GB",
-    ContentUS = "en-US",
-    ContentES = "es-ES",
-    ContentMX = "es-MX",
-    ContentFR = "fr-FR",
-    ContentID = "id-ID",
-    ContentIT = "it-IT",
-    ContentJP = "ja-JP",
-    ContentKR = "ko-KR",
-    ContentPL = "pl-PL",
-    ContentBR = "pt-BR",
-    ContentRU = "ru-RU",
-    ContentTH = "th-TH",
-    ContentTR = "tr-TR",
-    ContentVN = "vi-VN",
-    ContentCN = "zh-CN",
-    ContentTW = "zh-TW"
+    ContentBase = "https://api.henrikdev.xyz/valorant/v1/content"
 }

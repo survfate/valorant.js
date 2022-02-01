@@ -1,4 +1,4 @@
-import { Region } from "../index";
+import { Locale, Region } from "../index";
 
 export interface IConfig {
     /**
@@ -13,6 +13,10 @@ export interface IConfig {
      * - Region of your account
      */
     region: Region,
+    /**
+     * - Locale to display in
+     */
+    locale: Locale,
     /**
      * - Wether to get verbose output
      * @default false
