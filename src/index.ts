@@ -12,7 +12,8 @@ import { Request, RequestBuilder } from "./Request";
 import { Endpoints } from "./resources/Endpoints";
 import { ApiClientException } from "./models/Exceptions";
 import { CookieJar } from "tough-cookie";
-import { wrapper as axiosCookieJarSupport } from 'axios-cookiejar-support';
+// import { wrapper as axiosCookieJarSupport } from 'axios-cookiejar-support';
+import { HttpsCookieAgent } from "http-cookie-agent";
 
 export class RiotApiClient {
     #config: IConfig
@@ -103,18 +104,37 @@ export class RiotApiClient {
     }
 }
 
-axiosCookieJarSupport(Axios);
+// axiosCookieJarSupport(Axios);
 export class Http extends AbstractHttp {
     private readonly auth?: IAuthorization = null;
     private readonly version?: string = null;
     private readonly jar = new CookieJar();
+    private readonly ciphers = [
+        "TLS_AES_128_GCM_SHA256",
+        "TLS_AES_256_GCM_SHA384",
+        "TLS_CHACHA20_POLY1305_SHA256",
+        "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256",
+        "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256",
+        "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384",
+        "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384",
+        "TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256",
+        "TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256",
+        "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA",
+        "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA",
+        "TLS_RSA_WITH_AES_128_GCM_SHA256",
+        "TLS_RSA_WITH_AES_256_GCM_SHA384",
+        "TLS_RSA_WITH_AES_128_CBC_SHA",
+        "TLS_RSA_WITH_AES_256_CBC_SHA"
+    ].join(':');
+    private readonly httpsCookieAgentWithCiphers = new HttpsCookieAgent({ jar: this.jar, ciphers: this.ciphers });
 
     constructor(authorization?: IAuthorization, version?: string) {
         super();
         this.auth = authorization;
         this.version = version;
     }
-    axios_cookiejar_support_1
+
+    // axios_cookiejar_support_1
     /**
      * - Sends a request
      * @param request Request to send
@@ -122,6 +142,7 @@ export class Http extends AbstractHttp {
      */
     async sendRequest(request: Request): Promise<AxiosResponse> {
         try {
+            Axios.defaults.httpsAgent = this.httpsCookieAgentWithCiphers;
             const modifiedReq = RequestBuilder.fromRequest(request);
 
             if (this.auth != null && this.auth.accessToken != null) {
