@@ -185,31 +185,31 @@ export class Region {
 }
 
 export class Locale {
-    ContentBaseUrl: string
+    HenrikDevBaseUrl: string
     ContentLocale: string
 
     constructor(contentBaseUrl: string, contentLocale: string) {
-        this.ContentBaseUrl = contentBaseUrl;
+        this.HenrikDevBaseUrl = contentBaseUrl;
         this.ContentLocale = contentLocale;
     }
 
-    static AE = new Locale(Endpoints.ContentBase, "ar-AE");
-    static DE = new Locale(Endpoints.ContentBase, "de-DE");
-    static GB = new Locale(Endpoints.ContentBase, "en-GB");
-    static US = new Locale(Endpoints.ContentBase, "en-US");
-    static ES = new Locale(Endpoints.ContentBase, "es-ES");
-    static MX = new Locale(Endpoints.ContentBase, "es-MX");
-    static FR = new Locale(Endpoints.ContentBase, "fr-FR");
-    static ID = new Locale(Endpoints.ContentBase, "id-ID");
-    static IT = new Locale(Endpoints.ContentBase, "it-IT");
-    static JP = new Locale(Endpoints.ContentBase, "ja-JP");
-    static KR = new Locale(Endpoints.ContentBase, "ko-KR");
-    static PL = new Locale(Endpoints.ContentBase, "pl-PL");
-    static BR = new Locale(Endpoints.ContentBase, "pt-BR");
-    static RU = new Locale(Endpoints.ContentBase, "ru-RU");
-    static TH = new Locale(Endpoints.ContentBase, "th-TH");
-    static TR = new Locale(Endpoints.ContentBase, "tr-TR");
-    static VN = new Locale(Endpoints.ContentBase, "vi-VN");
-    static CN = new Locale(Endpoints.ContentBase, "zh-CN");
-    static TW = new Locale(Endpoints.ContentBase, "zh-TW");
+    static AE = new Locale(Endpoints.HenrikDevBase, "ar-AE");
+    static DE = new Locale(Endpoints.HenrikDevBase, "de-DE");
+    static GB = new Locale(Endpoints.HenrikDevBase, "en-GB");
+    static US = new Locale(Endpoints.HenrikDevBase, "en-US");
+    static ES = new Locale(Endpoints.HenrikDevBase, "es-ES");
+    static MX = new Locale(Endpoints.HenrikDevBase, "es-MX");
+    static FR = new Locale(Endpoints.HenrikDevBase, "fr-FR");
+    static ID = new Locale(Endpoints.HenrikDevBase, "id-ID");
+    static IT = new Locale(Endpoints.HenrikDevBase, "it-IT");
+    static JP = new Locale(Endpoints.HenrikDevBase, "ja-JP");
+    static KR = new Locale(Endpoints.HenrikDevBase, "ko-KR");
+    static PL = new Locale(Endpoints.HenrikDevBase, "pl-PL");
+    static BR = new Locale(Endpoints.HenrikDevBase, "pt-BR");
+    static RU = new Locale(Endpoints.HenrikDevBase, "ru-RU");
+    static TH = new Locale(Endpoints.HenrikDevBase, "th-TH");
+    static TR = new Locale(Endpoints.HenrikDevBase, "tr-TR");
+    static VN = new Locale(Endpoints.HenrikDevBase, "vi-VN");
+    static CN = new Locale(Endpoints.HenrikDevBase, "zh-CN");
+    static TW = new Locale(Endpoints.HenrikDevBase, "zh-TW");
 }

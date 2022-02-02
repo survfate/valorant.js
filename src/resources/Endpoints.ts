@@ -17,5 +17,5 @@ export enum Endpoints {
     ApParty = "https://glz-ap-1.ap.a.pvp.net",
     KrParty = "https://glz-kr-1.kr.a.pvp.net",
 
-    ContentBase = "https://api.henrikdev.xyz/valorant/v1/content"
+    HenrikDevBase = "https://api.henrikdev.xyz"
 }

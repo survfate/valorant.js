@@ -50,7 +50,7 @@ export class ContentApi {
     async getContent(): Promise<any> {
         const contentReq = new RequestBuilder()
             .setMethod("GET")
-            .setUrl(this._client.locale.ContentBaseUrl + "?locale=" + this._client.locale.ContentLocale)
+            .setUrl(this._client.locale.HenrikDevBaseUrl + "/valorant/v1/content?locale=" + this._client.locale.ContentLocale)
             .build();
 
         const contentRes = (await this._client.http.sendRequest(contentReq)).data;
