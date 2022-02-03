@@ -1,13 +1,13 @@
 {
-  "name": "valorant.js",
-  "version": "1.6.5",
+  "name": "@survfate/valorant.js",
+  "version": "1.6.7",
   "description": "API Wrapper for valorant with oauth support",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc"
   },
-  "author": "Sprayxe, Speeedyyyy",
+  "author": "Sprayxe, Speeedyyyy, survfate",
   "license": "MIT",
   "dependencies": {
     "@types/tough-cookie": "^4.0.0",
