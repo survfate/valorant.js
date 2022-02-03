@@ -1,6 +1,6 @@
-# valorant.js
+# @survfate/valorant.js
 ## An API Wrapper for valorant with oauth support
-#### Notice: I've been working on a different project (a .pak reader written in pure js/ts) so this library may have some issues. I will still update it from time to time though so feel free to create a pr/issue :)
+#### Notice: This fork is just my personal implementation for fixing the outdated Content API & Cloudflare bypass
 
 ## Example
 ```js
@@ -12,6 +12,7 @@
       username: "MY_USERNAME", // your username
       password: "MY_PASSWORD", // your password
       region: Region.MY_REGION, // Available regions: EU, NA, AP
+      locale: Locale.MY_LOCALE // Available locales: AE, DE, US, ES, MX, FR, ID, IT, JP, KR, PL, BR, RU, TH, TR, VN, CN, TW
     });
     
     await client.login();
