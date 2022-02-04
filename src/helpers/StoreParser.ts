@@ -74,7 +74,7 @@ export class StoreParser {
                 skins.push({
                     name: it ? it.item.name : "Unknown",
                     id: s,
-                    cost: it.offer.Cost
+                    cost: it ? it.offer.Cost : null
                 })
             })
         }
