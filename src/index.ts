@@ -20,7 +20,6 @@ export class RiotApiClient {
     auth: IAuthorization
     clientVersion: string
     region: Region
-    locale: Locale
     http: Http
     contentApi: ContentApi
     matchApi: MatchApi
@@ -41,12 +40,9 @@ export class RiotApiClient {
     constructor(config: IConfig) {
         if (!(config.region instanceof Region))
             throw new Error("'Config.region' must be type of 'Region'.");
-        if (!(config.locale instanceof Locale))
-            throw new Error("'Config.locale' must be type of 'Locale'.");
         this.http = new Http();
         this.#config = config;
         this.region = config.region;
-        this.locale = config.locale;
         this.buildServices();
     }
 
@@ -182,34 +178,4 @@ export class Region {
     static NA = new Region(Endpoints.NaBase, Endpoints.NaShared, Endpoints.NaParty, "na");
     static AP = new Region(Endpoints.ApBase, Endpoints.ApShared, Endpoints.ApParty, "ap");
     static KR = new Region(Endpoints.KrBase, Endpoints.KrShared, Endpoints.KrParty, "kr");
-}
-
-export class Locale {
-    HenrikDevBaseUrl: string
-    ContentLocale: string
-
-    constructor(contentBaseUrl: string, contentLocale: string) {
-        this.HenrikDevBaseUrl = contentBaseUrl;
-        this.ContentLocale = contentLocale;
-    }
-
-    static AE = new Locale(Endpoints.HenrikDevBase, "ar-AE");
-    static DE = new Locale(Endpoints.HenrikDevBase, "de-DE");
-    static GB = new Locale(Endpoints.HenrikDevBase, "en-GB");
-    static US = new Locale(Endpoints.HenrikDevBase, "en-US");
-    static ES = new Locale(Endpoints.HenrikDevBase, "es-ES");
-    static MX = new Locale(Endpoints.HenrikDevBase, "es-MX");
-    static FR = new Locale(Endpoints.HenrikDevBase, "fr-FR");
-    static ID = new Locale(Endpoints.HenrikDevBase, "id-ID");
-    static IT = new Locale(Endpoints.HenrikDevBase, "it-IT");
-    static JP = new Locale(Endpoints.HenrikDevBase, "ja-JP");
-    static KR = new Locale(Endpoints.HenrikDevBase, "ko-KR");
-    static PL = new Locale(Endpoints.HenrikDevBase, "pl-PL");
-    static BR = new Locale(Endpoints.HenrikDevBase, "pt-BR");
-    static RU = new Locale(Endpoints.HenrikDevBase, "ru-RU");
-    static TH = new Locale(Endpoints.HenrikDevBase, "th-TH");
-    static TR = new Locale(Endpoints.HenrikDevBase, "tr-TR");
-    static VN = new Locale(Endpoints.HenrikDevBase, "vi-VN");
-    static CN = new Locale(Endpoints.HenrikDevBase, "zh-CN");
-    static TW = new Locale(Endpoints.HenrikDevBase, "zh-TW");
 }

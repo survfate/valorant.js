@@ -12,7 +12,6 @@
       username: "MY_USERNAME", // your username
       password: "MY_PASSWORD", // your password
       region: Region.MY_REGION, // Available regions: EU, NA, AP
-      locale: Locale.MY_LOCALE // Available locales: AE, DE, US, ES, MX, FR, ID, IT, JP, KR, PL, BR, RU, TH, TR, VN, CN, TW
     });
     
     await client.login();
@@ -20,6 +19,13 @@
     
     const balance = await client.storeApi.getWallet(client.user.Subject);
     console.log(balance);
+
+    const { featured, bonus, skins } = await client.storeApi.getStorefront(
+      client.user.Subject,
+      true,
+      "MY_LOCALE" // Available locales: ar-AE / de-DE / en-US / es-ES / es-MX / fr-FR / id-ID / it-IT / ja-JP / ko-KR / pl-PL / pt-BR / ru-RU / th-TH / tr-TR / vi-VN / zh-CN / zh-TW
+    );
+    console.log(skins);
   } catch(err) {
     console.error(err);
   }

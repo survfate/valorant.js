@@ -43,7 +43,7 @@ export class StoreApi {
      * @param accountId Account to get storefront for
      * @param parse Wether to parse the shop or not
      */
-    async getStorefront(accountId: string, parse: boolean): Promise<IStorefront | IStorefrontParsed> {
+    async getStorefront(accountId: string, parse: boolean, locale = "en-US"): Promise<IStorefront | IStorefrontParsed> {
         const storeReq = new RequestBuilder()
             .setUrl(this._client.region.BaseUrl + "/store/v2/storefront/" + accountId)
             .setMethod("GET")
@@ -52,9 +52,13 @@ export class StoreApi {
         if (!parse)
             return storeRes;
 
-        const content = await this._client.contentApi.getContent();
+        const localeList = ["ar-AE", "de-DE", "en-US", "es-ES", "es-MX", "fr-FR", "id-ID", "it-IT", "ja-JP", "ko-KR", "pl-PL", "pt-BR", "ru-RU", "th-TH", "tr-TR", "vi-VN", "zh-CN", "zh-TW"];
+        if (!localeList.includes(locale))
+            locale = "en-US";
+        const content = await this._client.contentApi.getContents(locale);
+        const skins = await this._client.contentApi.getWeaponSkinlevels(locale);
         const offers = await this.getStoreOffers();
-        const parser = new StoreParser(storeRes, content, offers.Offers);
+        const parser = new StoreParser(storeRes, content, skins, offers.Offers);
         return parser.parse();
     }
 

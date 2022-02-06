@@ -6,11 +6,13 @@ import { IStoreOffer } from "../models/IStoreOffers";
 export class StoreParser {
     data: IStorefront
     contentList: any[]
+    skinList: any[]
     offerList: IStoreOffer[]
 
-    constructor(data: IStorefront, contentList: any, offerList: IStoreOffer[]) {
+    constructor(data: IStorefront, contentList: any, skinList: any, offerList: IStoreOffer[]) {
         this.data = data;
         this.contentList = contentList;
+        this.skinList = skinList;
         this.offerList = offerList;
     }
 
@@ -26,7 +28,7 @@ export class StoreParser {
                 featured.push({
                     id: item.Item.ItemID,
                     typeId: item.Item.ItemTypeID,
-                    name: it ? it.item.name : "Unknown",
+                    name: it ? it.item.displayName : "Unknown",
                     quantity: item.Item.Amount,
                     cost: { name: Currency[item.CurrencyID], id: item.CurrencyID, amount: item.BasePrice },
                     discount: item.DiscountPercent,
@@ -39,11 +41,11 @@ export class StoreParser {
         if (bonusStore && bonusStore.BonusStoreOffers) {
             bonusStore.BonusStoreOffers.forEach(v => {
                 const rewards = v.Offer.Rewards.map(item => {
-                    const it = this.getItem(item.ItemID);
+                    const it = this.getSkin(item.ItemID);
                     return {
                         id: item.ItemID,
                         typeId: item.ItemTypeID,
-                        name: it ? it.item.name : "Unknown",
+                        name: it ? it.skin.displayName : "Unknown",
                         amount: item.Quantity
                     }
                 });
@@ -70,11 +72,11 @@ export class StoreParser {
         const skinPanel = this.data.SkinsPanelLayout;
         if (skinPanel && skinPanel.SingleItemOffers) {
             skinPanel.SingleItemOffers.forEach(s => {
-                const it = this.getItem(s);
+                const it = this.getSkin(s);
                 skins.push({
-                    name: it ? it.item.name : "Unknown",
+                    name: it ? it.skin.displayName : "Unknown",
                     id: s,
-                    cost: it ? it.offer.Cost : null
+                    cost: it.offer.Cost
                 })
             })
         }
@@ -90,13 +92,25 @@ export class StoreParser {
         const items = this.contentList;
         for (let storefrontStack in items) {
             const storefront = items[storefrontStack];
-            const item = storefront.find(item => item && item.id === id);
+            const item = storefront.find(item => item && item.uuid === id);
             if (item) {
                 const offer = this.offerList.find(o => o.Rewards.map(r => r.ItemID).includes(id))
                 return {
                     item,
                     offer
                 }
+            }
+        }
+    }
+
+    private getSkin(id: string) {
+        const skins = this.skinList;
+        const skin = skins.find(skin => skin && skin.uuid === id);
+        if (skin) {
+            const offer = this.offerList.find(o => o.Rewards.map(r => r.ItemID).includes(id))
+            return {
+                skin,
+                offer
             }
         }
     }
