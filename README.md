@@ -33,22 +33,18 @@
 ```
 
 ## Support
-* Report Issues/Bugs [here](https://github.com/Sprayxe/valorant.js/issues)
-* Join [Discord](https://discord.gg/q37Dfyn) - Ask in #general
 * Read [Documentation](https://valorant-js.stoplight.io/docs/valorant-js/docs/Home.md) (OUTDATED, soon)
 
 ## Installation
-```npm install valorant.js --save```
-
+```npm install @survfate/valorant.js --save```
 
 ## Credits
+* [survfate](https://twitter.com/survfate) `@suRvFate#RyZ3N`
 * [Sprayxe](https://twitter.com/Sprayxe_) `@MarcelWRLD#0999`
 * [Speeedyyyy](https://twitter.com/Speeedyyyytv) `@Pilica#8525`
 * [RumbleMike](https://twitter.com/RumbleMikee) `@RumbleMike#5406` (API Documentation)
-* A small credit in your project would be appreciated (e.g mentioning lib name would be enough)
 
 ## Dependencies
 * [Axios](https://www.npmjs.com/package/axios)
 * [TypeScript](https://www.npmjs.com/package/typescript)
 * [QueryString](https://www.npmjs.com/package/querystring)
-

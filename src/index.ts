@@ -19,6 +19,7 @@ export class RiotApiClient {
     #config: IConfig
     auth: IAuthorization
     clientVersion: string
+    clientUserAgent: string
     region: Region
     http: Http
     contentApi: ContentApi
@@ -52,7 +53,8 @@ export class RiotApiClient {
     async login(): Promise<RiotApiClient> {
         // login and setup some stuff
         (this.auth as any) = {};
-        this.auth.accessToken = await this.playerApi.getAccessToken(this.#config.username, this.#config.password);
+        this.clientUserAgent = await this.getClientVersion();
+        this.auth.accessToken = await this.playerApi.getAccessToken(this.clientUserAgent, this.#config.username, this.#config.password);
         this.auth.rsoToken = await this.playerApi.getRsoToken(this.auth.accessToken);
         this.buildServices();
         // get user
@@ -64,6 +66,29 @@ export class RiotApiClient {
         this.clientVersion = await this.getClientVersion();
         this.buildServices();
         return this;
+    }
+
+    /**
+     * - Gets the current client User-Agent string
+     */
+    async getClientUserAgent(): Promise<String> {
+        try {
+            const list = (await Axios({
+                method: "GET",
+                url: "https://api.github.com/repos/Morilli/riot-manifests/contents/Riot%20Client/KeystoneFoundationLiveWin?ref=master"
+            })).data;
+
+            var newestClient;
+            list.forEach(function(elem){
+                if (newestClient == null || elem.name.slice(0, -5).localeCompare(newestClient.name.slice(0, -5), undefined, { numeric: true, sensitivity: 'base' }) == 1)
+                newestClient = elem;
+            });
+            
+            const versionNum = newestClient.name.slice(0, -5);
+            return "RiotClient/" + versionNum + ".1234567 rso-auth (Windows;10;;Professional, x64)";
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     /**

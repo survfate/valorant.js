@@ -45,12 +45,12 @@ export class PlayerApi {
      * @param username Username of the account
      * @param password Password of the account
      */
-    async getAccessToken(username: string, password: string): Promise<IAccessToken> {
+    async getAccessToken(useragent: string, username: string, password: string): Promise<IAccessToken> {
         const cookieReq = new RequestBuilder()
             .setMethod("POST")
             .setUrl(Endpoints.Auth + "/api/v1/authorization")
             .addHeader("Content-Type", "application/json")
-            .addHeader("User-Agent", "RiotClient/43.0.1.4195386.4190634 rso-auth (Windows;10;;Professional, x64)")
+            .addHeader("User-Agent", useragent)
             .setBody({
                 "client_id": "play-valorant-web-prod",
                 "nonce": "1",
@@ -64,7 +64,7 @@ export class PlayerApi {
             .setMethod("PUT")
             .setUrl(Endpoints.Auth + "/api/v1/authorization")
             .addHeader("Content-Type", "application/json")
-            .addHeader("User-Agent", "RiotClient/43.0.1.4195386.4190634 rso-auth (Windows;10;;Professional, x64)")
+            .addHeader("User-Agent", useragent)
             .setBody({
                 "type": "auth",
                 "username": username,
